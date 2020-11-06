@@ -8,17 +8,17 @@ Special Thanks To :
 	RendyTR
 Supported By :
 	My Lovely 
-	ExcellentTeamBots™
-	OmSquadâ™
-	MomoProtection™
+	ExcellentTeamBots
+	OmSquad
+	MomoProtection
 	HigherBrotherTeam
-	MPCORS™
-	NoelV2â™
-	Mi Bots™
+	MPCORS
+	NoelV2
+	Mi Bots
 	BoneToReborn
 	P.K BOTS
 	Spenah
-©2020 NoiBots™
+©2020 NoiBots
 '''
 # Error? Contact Me : Id Line : ibalv3
 from linepy import *
@@ -238,7 +238,7 @@ async def ibal_devi(op):
 		if op.type == 0:
 			return
 		if op.type == 5:
-			pesan = ["HaiiðŸ˜‰","Thanks For Add Me"] #You Can Custome It
+			pesan = ["Haii","Thanks For Add Me"] #You Can Custome It
 			rndm = random.choice(pesan)
 			line.sendMessage(op.param1, rndm)
 		if op.type == 25:
