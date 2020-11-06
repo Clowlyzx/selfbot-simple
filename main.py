@@ -22,7 +22,12 @@ Supported By :
 '''
 # Error? Contact Me : Id Line : ibalv3
 from linepy import *
-from akad.ttypes import *
+from liff.ttypes import *
+from liff.ttypes import LiffChatContext, LiffContext, LiffSquareChatContext, LiffNoneContext, LiffViewRequest
+from akad.ttypes import Message
+from akad.ttypes import ContentType as Type
+from akad.ttypes import TalkException
+from tmp.MySplit import *
 from list_module import*
 loop = asyncio.get_event_loop()
 line = LINE("gmail","pass")
