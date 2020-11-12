@@ -24,6 +24,7 @@ pip3 install livejson
 pip3 install html5lib
 pip3 install tweepy
 pip3 install wikipedia
+pip3 install thrift
 cd storage
 cd downloads
 cd selfbot-simple
