@@ -1,5 +1,5 @@
 #Thanks To : Uwewwwxyz, Dyu, Dolphin, Yehezkiel Bagas, RendyTR
-#Supported By : My Lovely, ExcellentTeamBots, Om Squad, MPCORPS, NoelV2, MI BOTS, BoneToReborn, P.K BOTS, SPENAH, HBT
+#Supported By : My Lovely, ExcellentTeamBots, Om Squad, MPCORPS, NoelV2, LsC, MI BOTS, BoneToReborn, P.K BOTS, SPENAH, HBT
 #Error? Please Contact Me
 
 from linepy import *
@@ -10,21 +10,65 @@ from akad.ttypes import Message
 from akad.ttypes import ContentType as Type
 from akad.ttypes import TalkException
 from tmp.MySplit import *
-from list_module import*
+from datetime import datetime
+from datetime import timedelta
+from gtts import gTTS
+from bs4 import BeautifulSoup
+from humanfriendly import format_timespan, format_size, format_number, format_length
+from io import StringIO
+import subprocess
+import youtube_dl, math
+import humanize
+import traceback
+import time
+import random
+import sys
+import pafy
+import os
+import json
+import null
+import codecs
+import html5lib
+import shutil
+import glob
+import re
+import base64
+import string
+import requests
+import ast
+import pytz
+import platform
+import wikipedia
+import importlib
+import atexit
+import asyncio
+import livejson
 loop = asyncio.get_event_loop()
 devi = LINE("Gmail","Password")
 print("Login Success,Type Help To See Command")
+print("Selfbot Edition\nBy NoiBots")
 deviMID = devi.profile.mid
 deviProfile = devi.profile
 devi_poll = OEPoll(devi)
-status = livejson.File('status.json', True, False, 4)
 waitOpen = codecs.open("wait.json","r","utf-8")
 settingsOpen = codecs.open("temp.json","r","utf-8")
 wait = json.load(waitOpen)
 settings = json.load(settingsOpen)
-author = status["author"] #Save Your Mid In File status.json
-owner = status["owner"] #Save Your Mid In File status.json
 #==================
+cctv = {
+	"cyduk":{},
+	"point":{},
+	"MENTION":{},
+	"sidermem":{}
+}
+
+read = {
+	"readPoint": {},
+	"readMember": {},
+	"readTime": {},
+	"ROM": {}
+}
+#==========
 with open("temp.json", "r", encoding="utf_8_sig") as f:
 	set = json.loads(f.read())
 	set.update(settings)
@@ -160,9 +204,10 @@ By : NoiBots
   Menu Commands :
      Media
      Profile
-     About
      Steal
      Sider On/Off
+      Tagall/Mentionall
+      Grouplist
      Logout
      Restart
 """
@@ -171,9 +216,9 @@ Selfbot Edition!
 By : NoiBots
       
  Media Commands :
-     Joox [ Query ]
+     Music [ Query ]
      KBBI [ Query ]
-     Corona Indo
+     Corona
      Hentai
      Gempa
 Note : Without Brackets!
@@ -195,11 +240,11 @@ Selfbot Edition!
 By : NoiBots
       
  Steal Commands :
-     Media
-     Profile
-     Self
-     Settings
-     Steal
+     GetName @Tag
+     GetBio @Tag
+     GetPicture @Tag
+     GetCover @Tag
+     GetContact @Tag
      Chat @Tag [ Text ]
 Note : Without Brackets!
 """
@@ -342,6 +387,54 @@ async def ibal_devi(op):
 					elif ibal == "mybio":
 						devi.sendReplyMessage(msg.id,to,"Bio :\n"+str(devi.getContact(sender).statusMessage))
 #=================================================
+#Media
+					elif ibal == "corona":
+						try:
+							r = requests.get("https://ibalapi.herokuapp.com/api/kawalcorona")
+							data = json.loads(r.text)
+							ret = "Info Corona Indonesia\n"
+							ret += "\n• City : "+str(data["result"]["city"])
+							ret += "\n• Death : "+str(data["result"]["death"])
+							ret += "\n• Healed : "+str(data["result"]["heal"])
+							ret += "\n• Case : "+str(data["result"]["opname"])
+							ret += "\n• Positive : "+str(data["result"]["positive"])
+							devi.sendReplyMessage(msg.id, to, str(ret))
+						except Exception as e:
+							devi.sendReplyMessage(msg.id, to, str(e))
+					elif ibal == "hentai":
+						try:
+							r = json.loads(requests.get("https://mnazria.herokuapp.com/api/picanime?list=lewd").text)
+							devi.sendReplyImageWithURL(msg.id, to, r["gambar"])
+						except Exception as e:
+							devi.sendReplyMessage(msg.id, to, str(e))
+					elif ibal == "gempa":
+						try:
+							r = json.loads(requests.get("https://mnazria.herokuapp.com/api/bmkg-gempa").text)
+							devi.sendReplyImageWithURL(msg.id, to, r["result"])
+						except Exception as e:
+							devi.sendReplyMessage(msg.id, to, str(e))
+					elif ibal.startswith("music "):
+						try:
+							sep = ibal.split(" ")
+							queryy = ibal.replace(sep[0] + " ","")
+							r = json.loads(requests.get(f"https://mnazria.herokuapp.com/api/jooxnich?search={queryy}").text)
+							#devi.sendReplyImageWithURL(msg.id, to, r["result"]["album_url"])
+							devi.sendReplyMessage(msg.id, to, r["lirik"])
+							devi.sendAudioWithURL(to, r["result"]["mp3Url"])
+						except Exception as e:
+							devi.sendReplyMessage(msg.id, to, str(e))
+					elif ibal.startswith("kbbi "):
+						try:
+							sep = ibal.split(" ")
+							hehe = ibal.replace(sep[0] + " ","")
+							r = requests.get(f"https://mnazria.herokuapp.com/api/kbbi?search={hehe}")
+							data = json.loads(r.text)
+							ret = f"KBBI From : {hehe}\n"
+							ret += "\n• "+str(data["result"][0])
+							devi.sendReplyMessage(msg.id, to, str(ret))
+						except Exception as e:
+							devi.sendReplyMessage(msg.id, to, str(e))
+#=================================================
 #Steal
 					elif ibal.startswith("getpicture "):
 						if 'MENTION' in msg.contentMetadata.keys()!= None:
@@ -417,39 +510,6 @@ async def ibal_devi(op):
 						member = [a.mid for a in group.members]
 						member.remove(devi.profile.mid)
 						devi.datamention(to,"Mention Members",member)
-#=================================================
-#Media
-					elif ibal.starswith("joox "):
-						sep = ibal.split(" ")
-						queryy = ibal.replace(sep[0] + " ","")
-						url = json.loads(requests.get(f"https://mnazria.herokuapp.com/api/jooxnich?search={queryy}").text)
-						devi.sendReplyImageWithURL(msg.id, to, main["result"]["album_url"])
-						devi.sendReplyMessage(msg.id, to, main["lirik"])
-						devi.sendAudioWithURL(to, main["result"]["mp3Url"])
-					elif ibal == "corona indo":
-						r = requests.get("https://ibalapi.herokuapp.com/api/kawalcorona")
-						data = json.loads(r.text)
-						ret = "CORONA INFO\n"
-						ret += "\nCountry : "+str(data["result"]["city"])
-						ret += "\nDeath : "+str(data["result"]["death"])
-						ret += "\nHealed : "+str(data["result"]["heal"])
-						ret += "\nCase : "+str(data["result"]["opname"])
-						ret += "\nPositive : "+str(data["result"]["positive"])
-						devi.sendReplyMessage(msg.id,to,str(ret))
-					elif ibal.startswith("kbbi "):
-						sep = ibal.split(" ")
-						hehe = ibal.replace(sep[0] + " ","")
-						result = requests.get(f"https://mnazria.herokuapp.com/api/kbbi?search={hehe}")
-						data = json.loads(result.text)
-						a = "KBBI :\n"
-						a += "\n" + str(data["result"][0])
-						devi.sendReplyMessage(msg.id,to,str(a))
-					elif ibal == "hentai":
-						r = json.loads(requests.get("https://mnazria.herokuapp.com/api/picanime?list=lewd").text)
-						devi.sendReplyImageWithURL(msg.id, to, r["gambar"])
-					elif ibal == "gempa":
-						r = json.loads(requests.get("https://mnazria.herokuapp.com/api/bmkg-gempa").text)
-						devi.sendReplyMessage(msg.id, to, r["result"])
 #============================================
 #End
 		if op.type == 55:
