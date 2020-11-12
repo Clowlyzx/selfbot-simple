@@ -17,6 +17,7 @@ pip3 install youtube_dl
 pip3 install pafy
 pip3 insall googletrans
 pip3 install gtts
+pip3 install humanize
 pip3 install humanfriendly
 pip3 install pytz
 pip3 install requests
