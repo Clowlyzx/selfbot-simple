@@ -1,4 +1,4 @@
 # selfbot-simple
 Just For Fun Guys ^^
 
-Tolong Cek Kembali Config Sebelum Run Bot
+Last Update : 12 November 2020
