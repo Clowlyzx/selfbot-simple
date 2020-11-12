@@ -1,28 +1,10 @@
-'''
-Fixed And Builded Belongs To : Ibal
-Special Thanks To :
-	Uwewwwxyz
-	DYU
-	Dolphin
-	Yehezkiel Bagas
-	RendyTR
-Supported By :
-	My Lovely 
-	ExcellentTeamBots
-	OmSquad
-	MomoProtection
-	HigherBrotherTeam
-	MPCORS
-	NoelV2
-	Mi Bots
-	BoneToReborn
-	P.K BOTS
-	Spenah
-©2020 NoiBots
-'''
-# Error? Contact Me : Id Line : ibalv3
+#Thanks To : Uwewwwxyz, Dyu, Dolphin, Yehezkiel Bagas, RendyTR
+#Supported By : My Lovely, ExcellentTeamBots, Om Squad, MPCORPS, NoelV2, MI BOTS, BoneToReborn, P.K BOTS, SPENAH, HBT
+#Error? Please Contact Me
+
 from linepy import *
 from liff.ttypes import *
+from linepy import*
 from liff.ttypes import LiffChatContext, LiffContext, LiffSquareChatContext, LiffNoneContext, LiffViewRequest
 from akad.ttypes import Message
 from akad.ttypes import ContentType as Type
@@ -30,10 +12,11 @@ from akad.ttypes import TalkException
 from tmp.MySplit import *
 from list_module import*
 loop = asyncio.get_event_loop()
-line = LINE("gmail","pass")
-lineMID = line.profile.mid
-lineProfile = line.profile
-line_poll = OEPoll(line)
+devi = LINE("Gmail","Password")
+print("Login Success,Type Help To See Command")
+deviMID = devi.profile.mid
+deviProfile = devi.profile
+devi_poll = OEPoll(devi)
 status = livejson.File('status.json', True, False, 4)
 waitOpen = codecs.open("wait.json","r","utf-8")
 settingsOpen = codecs.open("temp.json","r","utf-8")
@@ -41,20 +24,6 @@ wait = json.load(waitOpen)
 settings = json.load(settingsOpen)
 author = status["author"] #Save Your Mid In File status.json
 owner = status["owner"] #Save Your Mid In File status.json
-#==================
-cctv = {
-	"cyduk":{},
-	"point":{},
-	"MENTION":{},
-	"sidermem":{}
-}
-
-read = {
-	"readPoint": {},
-	"readMember": {},
-	"readTime": {},
-	"ROM": {}
-}
 #==================
 with open("temp.json", "r", encoding="utf_8_sig") as f:
 	set = json.loads(f.read())
@@ -73,12 +42,15 @@ def backupData():
 		f = codecs.open('wait.json','w','utf-8')
 		json.dump(backup,f,sort_keys=True,indent=4,ensure_ascii=False)
 		backup = status
+		f = codecs.open('status.json','w','urf-8')
+		json.dump(backup,f,sort_keys=True,indent=4,ensure_ascii=False)
+		return True
 	except Exception as error:
 		logError(error)
 		return False
 def speed_fetch():
 	start = time.time()
-	get = line.getProfile()
+	get = devi.getProfile()
 	taken = time.time() - start
 	took = time.time() - start
 	return "Speed Fetch ‚ô™\n- Took : %.3fms‚ô™\n- Taken : %.6fms‚ô™" % (took,taken)
@@ -93,15 +65,15 @@ def sendMention(to, mid, firstmessage, lastmessage):
 		arrData = {'S':slen, 'E':elen, 'M':mid}
 		arr.append(arrData)
 		text += mention + str(lastmessage)
-		line.sendMessage(to, text, {'MENTION': str('{"MENTIONEES":' + json.dumps(arr) + '}')}, 0)
+		devi.sendMessage(to, text, {'MENTION': str('{"MENTIONEES":' + json.dumps(arr) + '}')}, 0)
 	except Exception as error:
 		logError(error)
-		line.sendMessage(to, "[ INFO ] Error :\n" + str(error))
+		devi.sendMessage(to, "[ INFO ] Error :\n" + str(error))
 def sendMessageCustom(to, text, icon , name):
 	annda = {'MSG_SENDER_ICON': icon,
 		'MSG_SENDER_NAME':  name,
 	}
-	line.sendMessage(to, text, contentMetadata=annda)
+	devi.sendMessage(to, text, contentMetadata=annda)
 def mentions(to, text="", mids=[]):
 	arrData = ""
 	arr = []
@@ -128,33 +100,7 @@ def mentions(to, text="", mids=[]):
 		arrData = {'S':str(slen), 'E':str(elen - 4), 'M':mids[0]}
 		arr.append(arrData)
 		textx += mention + str(text)
-	line.sendMessage(to, textx, {'AGENT_NAME':'line OFFICIAL', 'AGENT_LINK': 'line://ti/p/~{}'.format(line.getProfile().userid), 'AGENT_ICON': "http://dl.profile.line-cdn.net/" + line.getContact("u085311ecd9e3e3d74ae4c9f5437cbcb5").picturePath, 'MENTION': str('{"MENTIONEES":' + json.dumps(arr) + '}')}, 0)
-def command(text):
-	noi = text.lower()
-	if settings["setKey"] == True:
-		if noi.startswith(settings["keyCommand"]):
-			cmd = noi.replace(settings["keyCommand"],"")
-		else:
-			cmd = "Undefined Command"
-	else:
-		cmd = text.lower()
-	return cmd
-def restartBot():
-	python = sys.executable
-	os.execl(python,python,*sys.argv)
-def changeVideoAndPictureProfile(pict, vids):
-	try:
-		files = {'file': open(vids, 'rb')}
-		obs_params = line.genOBSParams({'oid': lineMID, 'ver': '2.0', 'type': 'video', 'cat': 'vp.mp4'})
-		data = {'params': obs_params}
-		r_vp = line.server.postContent('{}/talk/vp/upload.nhn'.format(str(line.server.line_OBS_DOMAIN)), data=data, files=files)
-		if r_vp.status_code != 201:
-			return "Failed..."
-		line.updateProfilePicture(pict, 'vp')
-		return "Success..."
-	except Exception as e:
-		raise Exception("Error! {}".format(str(e)))
-		os.remove("ExcellentTeamBots.mp4")
+	devi.sendMessage(to, textx, {'AGENT_NAME':'devi OFFICIAL', 'AGENT_LINK': 'devi://ti/p/~{}'.format(devi.getProfile().userid), 'AGENT_ICON': "http://dl.profile.devi-cdn.net/" + devi.getContact("u085311ecd9e3e3d74ae4c9f5437cbcb5").picturePath, 'MENTION': str('{"MENTIONEES":' + json.dumps(arr) + '}')}, 0)
 def siderMembers(to, mid):
 	try:
 		arrData = ""
@@ -175,18 +121,43 @@ def siderMembers(to, mid):
 				num=(num+1)
 			else:
 				try:
-					no = "\n {} ".format(str(line.getGroup(to).name))
+					no = "\n {} ".format(str(devi.getGroup(to).name))
 				except:
 					no = "\n Success "
-		line.sendMessage(to, textx, {'MENTION': str('{"MENTIONEES":' + json.dumps(arr) + '}')}, 0)
+		devi.sendMessage(to, textx, {'MENTION': str('{"MENTIONEES":' + json.dumps(arr) + '}')}, 0)
 	except Exception as error:
-		line.sendMessage(to, "[ INFO ] Error :\n" + str(error))
-#===============
+		devi.sendMessage(to, "[ INFO ] Error :\n" + str(error))
+def command(text):
+	noi = text.lower()
+	if settings["setKey"] == True:
+		if noi.startswith(settings["keyCommand"]):
+			cmd = noi.replace(settings["keyCommand"],"")
+		else:
+			cmd = "Undefined Command"
+	else:
+		cmd = text.lower()
+	return cmd
+def restartBot():
+	python = sys.executable
+	os.execl(python,python,*sys.argv)
+def changeVideoAndPictureProfile(pict, vids):
+	try:
+		files = {'file': open(vids, 'rb')}
+		obs_params = devi.genOBSParams({'oid': deviMID, 'ver': '2.0', 'type': 'video', 'cat': 'vp.mp4'})
+		data = {'params': obs_params}
+		r_vp = devi.server.postContent('{}/talk/vp/upload.nhn'.format(str(devi.server.devi_OBS_DOMAIN)), data=data, files=files)
+		if r_vp.status_code != 201:
+			return "Failed..."
+		devi.updateProfilePicture(pict, 'vp')
+		return "Success..."
+	except Exception as e:
+		raise Exception("Error change video and picture profile {}".format(str(e)))
+		os.remove("ExcellentTeamBots.mp4")
 devq = """Hello @!
- Selfbot Edition!
-©2020 NoiBotsô
+Selfbot Edition!
+By : NoiBots
       
- Menu Commands :
+  Menu Commands :
      Media
      Profile
      About
@@ -196,8 +167,8 @@ devq = """Hello @!
      Restart
 """
 medias = """Hello @!
- Selfbot Edition!
-©2020 NoiBotsô
+Selfbot Edition!
+By : NoiBots
       
  Media Commands :
      Joox [ Query ]
@@ -208,8 +179,8 @@ medias = """Hello @!
 Note : Without Brackets!
 """
 profiles = """Hello @!
- Selfbot Edition!
-©2020 NoiBotsô
+Selfbot Edition!
+By : NoiBots
       
  Profile Commands :
      MyName
@@ -220,8 +191,8 @@ profiles = """Hello @!
 Note : Without Brackets!
 """
 steals = """Hello @!
- Selfbot Edition!
-©2020 NoiBotsô
+Selfbot Edition!
+By : NoiBots
       
  Steal Commands :
      Media
@@ -240,7 +211,7 @@ async def ibal_devi(op):
 		if op.type == 5:
 			pesan = ["Haii","Thanks For Add Me"] #You Can Custome It
 			rndm = random.choice(pesan)
-			line.sendMessage(op.param1, rndm)
+			devi.sendMessage(op.param1, rndm)
 		if op.type == 25:
 			msg = op.message
 			text = str(msg.text)
@@ -249,46 +220,46 @@ async def ibal_devi(op):
 			receiver = msg.to
 			sender = msg._from
 			ibal = command(text)
-			if msg.toType == 0 and sender != line.profile.mid:
+			if msg.toType == 0 and sender != devi.profile.mid:
 				to = sender
 			else:
 				to = receiver
 			if msg.contentType == 0:
 				for ibal in ibal.split(" & "):
-					if ibal == "ping" or ibal == "":
-						line.sendMention(to, "Yes? @! Im Here","",[sender])
+					if ibal == "hi":
+						devi.sendMention(to, "@! Hi Too","",[sender])
 					elif ibal == "speed":
-						line.sendReplyMessage(msg.id, to, speed_fetch())
+						devi.sendReplyMessage(msg.id, to, speed_fetch())
 					elif ibal == "help":
-						line.sendMention(to, devq,"",[sender])
+						devi.sendMention(to, devq,"",[sender])
 					elif ibal == "media":
-						line.sendMention(to, medias,"",[sender])
+						devi.sendMention(to, medias,"",[sender])
 					elif ibal == "profile":
-						line.sendMention(to, profiles,"",[sender])
+						devi.sendMention(to, profiles,"",[sender])
 					elif ibal == "steal":
-						line.sendMention(to, steals,"",[sender])
+						devi.sendMention(to, steals,"",[sender])
 					elif ibal == "about":
-						h = line.getContact("ucf9bf411b5ee4c9e6a1faa0be27d94e9")
-						groups = line.getGroupIdsJoined()
-						contactlist = line.getAllContactIds()
-						kontak = line.getContacts(contactlist)
+						h = devi.getContact("ucf9bf411b5ee4c9e6a1faa0be27d94e9")
+						groups = devi.getGroupIdsJoined()
+						contactlist = devi.getAllContactIds()
+						kontak = devi.getContacts(contactlist)
 						ac = subprocess.getoutput('lsb_release -a')
 						am = subprocess.getoutput('cat /proc/meminfo')
 						ax = subprocess.getoutput('lscpu')
 						core = subprocess.getoutput('grep -c ^processor /proc/cpuinfo ')
 						python_imp = platform.python_implementation()
 						python_ver = platform.python_version()
-						for devi in ac.splitdevis():
-							if 'Description:' in devi:
-								osi = devi.split('Description:')[1].replace('  ','')
-						for devi in ax.splitdevis():
-							if 'Architecture:' in devi:
-								architecture =  devi.split('Architecture:')[1].replace(' ','')
-						for devi in am.splitdevis():
-							if 'MemTotal:' in devi:
-								mem = devi.split('MemTotal:')[1].replace(' ','')
-							if 'MemFree:' in devi:
-								fr = devi.split('MemFree:')[1].replace(' ','')
+						for noi in ac.splitnois():
+							if 'Description:' in noi:
+								osi = noi.split('Description:')[1].replace('  ','')
+						for noi in ax.splitnois():
+							if 'Architecture:' in noi:
+								architecture =  noi.split('Architecture:')[1].replace(' ','')
+						for noi in am.splitnois():
+							if 'MemTotal:' in noi:
+								mem = noi.split('MemTotal:')[1].replace(' ','')
+							if 'MemFree:' in noi:
+								fr = noi.split('MemFree:')[1].replace(' ','')
 						ret_ = "About System :\n\n"
 						ret_ +="OS System : {}\n".format(osi)
 						ret_ +="Language : {}\n".format(python_imp)
@@ -302,17 +273,17 @@ async def ibal_devi(op):
 						ret_ += "\nGroup : {}".format(str(len(groups)))
 						ret_ += "\nFriend : {}".format(str(len(kontak)))
 						ret_ += "\nType : SelfbotBot"
-						line.sendReplyMessage(msg.id, to, str(ret_))
+						devi.sendReplyMessage(msg.id, to, str(ret_))
 					elif ibal == 'logout':
-						line.sendReplyMention(to,"User @! Has Been Logout ","",[sender])
+						devi.sendMention(to,"User @! Has Been Logout","",[sender])
 						time.sleep(3)
 						sys.exit('Logout')
 					elif ibal == "restart":
-						line.sendReplyMessage(msg.id,to,"Please Wait ")
+						devi.sendReplyMessage(msg.id,to,"Please Wait")
 						restartBot()
 					elif ibal == 'sider on':
 						try:
-							line.sendReplyMessage(msg.id,to, "Check Sider Set To Enable")
+							devi.sendReplyMessage(msg.id,to, "Check Sider Set To Enable")
 							del cctv['point'][to]
 							del cctv['sidermem'][to]
 							del cctv['cyduk'][to]
@@ -324,52 +295,52 @@ async def ibal_devi(op):
 					elif ibal == 'sider off':
 						if to in cctv['point']:
 							cctv['cyduk'][to]=False
-							line.sendReplyMessage(msg.id,to, "Check Sider Set To Disable")
+							devi.sendReplyMessage(msg.id,to, "Check Sider Set To Disable")
 						else:
-							line.sendReplyMessage(msg.id,to, "Check Sider Has Been Disable")
+							devi.sendReplyMessage(msg.id,to, "Check Sider Has Been Disable")
 #=====================================================
 #Profile
-					elif ibal.startswith('pc '):
+					elif ibal.startswith('chat '):
 						try:
 							if 'MENTION' in msg.contentMetadata.keys()!=None:
 								key = eval(msg.contentMetadata["MENTION"])
 								key1 = key["MENTIONEES"][0]["M"]
-								nama = line.getContact(key1).displayName
-								anu = line.getContact(key1)
+								nama = devi.getContact(key1).displayName
+								anu = devi.getContact(key1)
 								if len(ibal.split(" ")) >= 2:
 									mid  = "{}".format(key1)
 									text = "{}".format(str(ibal.replace(ibal.split(" ")[0]+" ","")))
 									icon = "http://dl.profile.line.naver.jp/{}".format(anu.pictureStatus)
 									name = "{}".format(anu.displayName)
-									b = [sendMessageCustom(key1, text, icon, name)];line.sendMention(to, '„Äå Personal Chat „Äç\n@! Please Cek My Pc','',[key1])
+									b = [sendMessageCustom(key1, text, icon, name)];devi.sendMention(to, '„Äå Personal Chat „Äç\n@! Please Cek My Pc','',[key1])
 						except Exception as e:
-							line.sendReplyMessage(msg.id, to, f" Notification Error \n {e}")
+							devi.sendReplyMessage(msg.id, to, f" Notification Error \n {e}")
 					elif ibal.startswith("changevideo "):
 						try:
 							sep = text.split(" ")
 							link = text.replace(sep[0] + " ","")
-							line.sendReplyMessage(msg.id, to, "Starting Download....")
-							pic = "https://obs.line-scdn.net/{}".format(line.getProfile().pictureStatus)
+							devi.sendReplyMessage(msg.id, to, "Starting Download....")
+							pic = "https://obs.line-scdn.net/{}".format(devi.getProfile().pictureStatus)
 							subprocess.getoutput(f'youtube-dl --format mp4 --output NoiBots.mp4 {link}')
-							pict = line.downloadFileURL(pic)
+							pict = devi.downloadFileURL(pic)
 							vids = "NoiBots.mp4"
 							time.sleep(2)
 							changeVideoAndPictureProfile(pict, vids)
-							line.sendReplyMessage(msg.id, to, "Success....")
+							devi.sendReplyMessage(msg.id, to, "Success....")
 							os.remove("NoiBots.mp4")
 						except Exception as e:
-							line.sendReplyMessage(msg.id,to,str(e))
+							devi.sendReplyMessage(msg.id,to,str(e))
 					elif ibal == "mypicture":
-						path = line.getContact(sender).pictureStatus
-						line.sendReplyMessage(msg.id,to,"https://obs.line-scdn.net/{}".format(str(path)))
+						path = devi.getContact(sender).pictureStatus
+						devi.sendReplyMessage(msg.id,to,"https://obs.line-scdn.net/{}".format(str(path)))
 					elif ibal == "mycover":
-						image = line.getProfileCoverURL(sender)
+						image = devi.getProfileCoverURL(sender)
 						path = str(image)
-						line.sendReplyMessage(msg.id,to,path)
+						devi.sendReplyMessage(msg.id,to,path)
 					elif ibal == "myname":
-						line.sendReplyMessage(msg.id,to," Name \n"+str(ibal.getContact(sender).displayName))
+						devi.sendReplyMessage(msg.id,to,"Name :\n"+str(devi.getContact(sender).displayName))
 					elif ibal == "mybio":
-						line.sendReplyMessage(msg.id,to," Bio \n"+str(ibal.getContact(sender).statusMessage))
+						devi.sendReplyMessage(msg.id,to,"Bio :\n"+str(devi.getContact(sender).statusMessage))
 #=================================================
 #Steal
 					elif ibal.startswith("getpicture "):
@@ -382,7 +353,7 @@ async def ibal_devi(op):
 								if mention["M"] not in lists:
 									lists.append(mention["M"])
 							for ls in lists:
-								line.sendReplyMessage(msg.id,to,f"https://obs.line-scdn.net/{line.getContact(ls).pictureStatus}")
+								devi.sendReplyMessage(msg.id,to,f"https://obs.line-scdn.net/{devi.getContact(ls).pictureStatus}")
 					elif ibal.startswith("getcover "):
 						if 'MENTION' in msg.contentMetadata.keys()!= None:
 							names = re.findall(r'@(\w+)', text)
@@ -393,9 +364,9 @@ async def ibal_devi(op):
 								if mention["M"] not in lists:
 									lists.append(mention["M"])
 							for ls in lists:
-								image = line.getProfileCoverURL(ls)
+								image = devi.getProfileCoverURL(ls)
 								path = str(image)
-								line.sendReplyMessage(msg.id,to,path)
+								devi.sendReplyMessage(msg.id,to,path)
 					elif ibal.startswith("getbio "):
 						if 'MENTION' in msg.contentMetadata.keys()!= None:
 							names = re.findall(r'@(\w+)', text)
@@ -406,7 +377,7 @@ async def ibal_devi(op):
 								if mention["M"] not in lists:
 									lists.append(mention["M"])
 							for ls in lists:
-								line.sendReplyMessage(msg.id,to," Status Message ï\n" + str(line.getContact(ls).statusMessage))
+								devi.sendReplyMessage(msg.id,to,"Status Message\n" + str(devi.getContact(ls).statusMessage))
 					elif ibal.startswith("getname "):
 						if 'MENTION' in msg.contentMetadata.keys()!= None:
 							names = re.findall(r'@(\w+)', text)
@@ -417,7 +388,7 @@ async def ibal_devi(op):
 								if mention["M"] not in lists:
 									lists.append(mention["M"])
 							for ls in lists:
-								line.sendReplyMessage(msg.id,to," Name ï\n" + str(line.getContact(ls).displayName))
+								devi.sendReplyMessage(msg.id,to," Name \n" + str(devi.getContact(ls).displayName))
 					elif ibal.startswith("getcontact "):
 						if 'MENTION' in msg.contentMetadata.keys()!= None:
 							names = re.findall(r'@(\w+)', text)
@@ -428,57 +399,57 @@ async def ibal_devi(op):
 								if mention["M"] not in lists:
 									lists.append(mention["M"])
 							for ls in lists:
-								contact = line.getContact(ls)
+								contact = devi.getContact(ls)
 								mi_d = contact.mid
-								line.sendContact(to, mi_d)
+								devi.sendContact(to, mi_d)
 					elif ibal.startswith("grouplist"):
-						groups = line.groups
+						groups = devi.groups
 						ret_ = "Group List"
 						no = 0 + 1
 						for gid in groups:
-							group = line.getGroup(gid)
+							group = devi.getGroup(gid)
 							ret_ += "\n {}. {} | {} ".format(str(no), str(group.name), str(len(group.members)))
 							no += 1
 						ret_ += "\n Total {} Groups ".format(str(len(groups)))
-						line.sendReplyMessage(msg.id,to, str(ret_))
+						devi.sendReplyMessage(msg.id,to, str(ret_))
 					elif ibal == "tagall" or ibal == "mentionall" or ibal == "dor":
-						group = line.getGroup(to)
+						group = devi.getGroup(to)
 						member = [a.mid for a in group.members]
-						member.remove(line.profile.mid)
-						line.datamention(to,"Mention Members",member)
+						member.remove(devi.profile.mid)
+						devi.datamention(to,"Mention Members",member)
 #=================================================
 #Media
 					elif ibal.starswith("joox "):
 						sep = ibal.split(" ")
 						queryy = ibal.replace(sep[0] + " ","")
 						url = json.loads(requests.get(f"https://mnazria.herokuapp.com/api/jooxnich?search={queryy}").text)
-						line.sendReplyImageWithURL(msg.id, to, main["result"]["album_url"])
-						line.sendReplyMessage(msg.id, to, main["lirik"])
-						line.sendAudioWithURL(to, main["result"]["mp3Url"])
+						devi.sendReplyImageWithURL(msg.id, to, main["result"]["album_url"])
+						devi.sendReplyMessage(msg.id, to, main["lirik"])
+						devi.sendAudioWithURL(to, main["result"]["mp3Url"])
 					elif ibal == "corona indo":
 						r = requests.get("https://ibalapi.herokuapp.com/api/kawalcorona")
 						data = json.loads(r.text)
 						ret = "CORONA INFO\n"
-						ret += "\n Country : "+str(data["result"]["city"])
-						ret += "\n Death : "+str(data["result"]["death"])
-						ret += "\n Healed : "+str(data["result"]["heal"])
-						ret += "\n Case : "+str(data["result"]["opname"])
-						ret += "\n Positive : "+str(data["result"]["positive"])
-						line.sendReplyMessage(msg.id,to,str(ret))
+						ret += "\nCountry : "+str(data["result"]["city"])
+						ret += "\nDeath : "+str(data["result"]["death"])
+						ret += "\nHealed : "+str(data["result"]["heal"])
+						ret += "\nCase : "+str(data["result"]["opname"])
+						ret += "\nPositive : "+str(data["result"]["positive"])
+						devi.sendReplyMessage(msg.id,to,str(ret))
 					elif ibal.startswith("kbbi "):
 						sep = ibal.split(" ")
-						text = ibal.replace(sep[0] + " ","")
-						result = requests.get(f"https://mnazria.herokuapp.com/api/kbbi?search={text}")
-						data = result.json()
+						hehe = ibal.replace(sep[0] + " ","")
+						result = requests.get(f"https://mnazria.herokuapp.com/api/kbbi?search={hehe}")
+						data = json.loads(result.text)
 						a = "KBBI :\n"
 						a += "\n" + str(data["result"][0])
-						line.sendReplyMessage(msg.id,to,str(a))
+						devi.sendReplyMessage(msg.id,to,str(a))
 					elif ibal == "hentai":
 						r = json.loads(requests.get("https://mnazria.herokuapp.com/api/picanime?list=lewd").text)
-						line.sendReplyImageWithURL(msg.id, to, r["gambar"])
+						devi.sendReplyImageWithURL(msg.id, to, r["gambar"])
 					elif ibal == "gempa":
 						r = json.loads(requests.get("https://mnazria.herokuapp.com/api/bmkg-gempa").text)
-						line.sendReplyMessage(msg.id, to, r["result"])
+						devi.sendReplyMessage(msg.id, to, r["result"])
 #============================================
 #End
 		if op.type == 55:
@@ -491,24 +462,28 @@ async def ibal_devi(op):
 					read['ROM'][op.param1][op.param2] = op.param2
 				if cctv['cyduk'][op.param1]==True:
 					if op.param1 in cctv['point']:
-						Name = line.getContact(op.param2).displayName
+						Name = devi.getContact(op.param2).displayName
 						if Name in cctv['sidermem'][op.param1]:
 							pass
 						else:
 							cctv['sidermem'][op.param1] += "~ " + Name
 							siderMembers(op.param1, [op.param2])
-							contact = line.getContact(op.param2)
+							contact = devi.getContact(op.param2)
 					backupData()
+				else:
+					pass
+			except:
+				pass
 	except Exception as error:
 		error = traceback.format_exc()
 def run_bot():
 	while True:
 		try:
-			ops = line_poll.singleTrace(count=50)
+			ops = devi_poll.singleTrace(count=50)
 			if ops != None:
 				for op in ops:
 					loop.run_until_complete(ibal_devi(op))
-					line_poll.setRevision(op.revision)
+					devi_poll.setRevision(op.revision)
 		except TalkException as error:
 			traceback.print_tb(error.__traceback__)
 if __name__ == "__main__":
