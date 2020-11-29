@@ -31,5 +31,6 @@ pip3 install wikipedia
 pip3 install thrift
 cd storage
 cd downloads
-cd selfbot-simple
+cd selfbot-simple-main
+cd selfbot-simple-main
 python3 main.py
