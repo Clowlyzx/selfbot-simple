@@ -45,7 +45,7 @@ import atexit
 import asyncio
 import livejson
 loop = asyncio.get_event_loop()
-devi = LINE("muhikbal4100@gmail.com","yapan503")
+devi = LINE("Gmail","Password")
 print("Login Success,Type Liff Before Execute Help Commands")
 print("Selfbot Edition\nBy NoiBots")
 deviMID = devi.profile.mid
