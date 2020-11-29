@@ -1,6 +1,7 @@
 #Thanks To : Uwewwwxyz, Dyu, Dolphin, Yehezkiel Bagas, RendyTR
 #Supported By : My Lovely, ExcellentTeamBots, Om Squad, MPCORPS, NoelV2, LsC, MI BOTS, BoneToReborn, P.K BOTS, SPENAH, HBT
 #Error? Please Contact Me
+#Id Line : ibalv3
 
 from linepy import *
 from liff.ttypes import *
@@ -45,7 +46,7 @@ import asyncio
 import livejson
 loop = asyncio.get_event_loop()
 devi = LINE("Gmail","Password")
-print("Login Success,Type Help To See Command")
+print("Login Success,Type Liff Before Execute Help Commands")
 print("Selfbot Edition\nBy NoiBots")
 deviMID = devi.profile.mid
 deviProfile = devi.profile
@@ -85,9 +86,6 @@ def backupData():
 		backup = wait
 		f = codecs.open('wait.json','w','utf-8')
 		json.dump(backup,f,sort_keys=True,indent=4,ensure_ascii=False)
-		backup = status
-		f = codecs.open('status.json','w','urf-8')
-		json.dump(backup,f,sort_keys=True,indent=4,ensure_ascii=False)
 		return True
 	except Exception as error:
 		logError(error)
@@ -98,6 +96,34 @@ def speed_fetch():
 	taken = time.time() - start
 	took = time.time() - start
 	return "Speed Fetch ♪\n- Took : %.3fms♪\n- Taken : %.6fms♪" % (took,taken)
+def sendTemplate(group, data):
+	xyz = LiffChatContext(group)
+	xyzz = LiffContext(chat=xyz)
+	view = LiffViewRequest('1653391722-QN5aXrrz', xyzz)
+	token = devi.liff.issueLiffView(view)
+	url = 'https://api.line.me/message/v3/share'
+	headers = {
+	    'Content-Type': 'application/json',
+	    'Authorization': 'Bearer %s' % token.accessToken
+	}
+	data = {"messages":[data]}
+	requests.post(url, headers=headers, data=json.dumps(data))
+def sendTemplate(to, data):
+	xyz = LiffChatContext(to)
+	xyzz = LiffContext(chat=xyz)
+	view = LiffViewRequest('1653391722-QN5aXrrz', xyzz)
+	token = devi.liff.issueLiffView(view)
+	url = 'https://api.line.me/message/v3/share'
+	headers = {
+	    'Content-Type': 'application/json',
+	    'Authorization': 'Bearer %s' % token.accessToken
+	}
+	data = {"messages":[data]}
+	requests.post(url, headers=headers, data=json.dumps(data))
+def helmenu(to):
+	dataa = {"type": "bubble","size": "kilo","body": {"type": "box","layout": "vertical","contents": [{"type": "image","url": "https://i.ibb.co/5jCXDdd/a354e7ed2dba2cfe122e8e7af06d75a5.png","size": "full","aspectMode": "cover","aspectRatio": "1:1","gravity": "center"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Help-Menu","weight": "bold","align": "center","wrap": True,"adjustMode": "shrink-to-fit","color": "#ffffff"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Media","color": "#ffffff"}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "50px","offsetStart": "20px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Profile","color": "#ffffff","wrap": True}],"offsetTop": "90px","position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "90px","offsetStart": "20px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Steal","size": "md","wrap": True,"color": "#ffffff"}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "50px","offsetStart": "80px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Sider","size": "md","color": "#ffffff","wrap": True}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "90px","offsetStart": "80px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Tagall","size": "md","color": "#ffffff","wrap": True}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "50px","offsetStart": "130px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Group","size": "md","color": "#ffffff","wrap": True}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "90px","offsetStart": "130px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Logout","size": "md","color": "#ffffff","wrap": True}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "50px","offsetStart": "190px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Restart","size": "md","color": "#ffffff","wrap": True}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "90px","offsetStart": "190px"}],"position": "absolute","offsetBottom": "0px","offsetStart": "0px","offsetEnd": "0px","paddingAll": "20px","offsetTop": "130px"}],"paddingAll": "0px"}}
+	data = {"type": "flex","altText": "Test","contents": {"type": "carousel","contents": [dataa]}}
+	sendTemplate(to,data)
 def sendMention(to, mid, firstmessage, lastmessage):
 	try:
 		arrData = ""
@@ -197,20 +223,6 @@ def changeVideoAndPictureProfile(pict, vids):
 	except Exception as e:
 		raise Exception("Error change video and picture profile {}".format(str(e)))
 		os.remove("ExcellentTeamBots.mp4")
-devq = """Hello @!
-Selfbot Edition!
-By : NoiBots
-      
-  Menu Commands :
-     Media
-     Profile
-     Steal
-     Sider On/Off
-      Tagall/Mentionall
-      Grouplist
-     Logout
-     Restart
-"""
 medias = """Hello @!
 Selfbot Edition!
 By : NoiBots
@@ -276,7 +288,7 @@ async def ibal_devi(op):
 					elif ibal == "speed":
 						devi.sendReplyMessage(msg.id, to, speed_fetch())
 					elif ibal == "help":
-						devi.sendMention(to, devq,"",[sender])
+						helpmenu(to)
 					elif ibal == "media":
 						devi.sendMention(to, medias,"",[sender])
 					elif ibal == "profile":
@@ -326,6 +338,10 @@ async def ibal_devi(op):
 					elif ibal == "restart":
 						devi.sendReplyMessage(msg.id,to,"Please Wait")
 						restartBot()
+					elif ibal == "sider":
+						devi.sendReplyMessage(msg.id,to,"If You Want To Activated Check Sider, Type\nSider On\nIf You Want To Deactivated Check Sider, Type\nSider Off")
+					elif ibal == "liff":
+						devi.sendReplyMessage(msg.id,to,"Please Click Link Below For Access Template ♪\nline://app/1571191887-d6rJnOxJ/?type=text&text=Help")
 					elif ibal == 'sider on':
 						try:
 							devi.sendReplyMessage(msg.id,to, "Check Sider Set To Enable")
@@ -495,7 +511,7 @@ async def ibal_devi(op):
 								contact = devi.getContact(ls)
 								mi_d = contact.mid
 								devi.sendContact(to, mi_d)
-					elif ibal.startswith("grouplist"):
+					elif ibal == "group":
 						groups = devi.groups
 						ret_ = "Group List"
 						no = 0 + 1
