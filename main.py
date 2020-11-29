@@ -45,7 +45,7 @@ import atexit
 import asyncio
 import livejson
 loop = asyncio.get_event_loop()
-devi = LINE("Gmail","Password")
+devi = LINE("muhikbal4100@gmail.com","yapan503")
 print("Login Success,Type Liff Before Execute Help Commands")
 print("Selfbot Edition\nBy NoiBots")
 deviMID = devi.profile.mid
@@ -120,10 +120,6 @@ def sendTemplate(to, data):
 	}
 	data = {"messages":[data]}
 	requests.post(url, headers=headers, data=json.dumps(data))
-def helmenu(to):
-	dataa = {"type": "bubble","size": "kilo","body": {"type": "box","layout": "vertical","contents": [{"type": "image","url": "https://i.ibb.co/5jCXDdd/a354e7ed2dba2cfe122e8e7af06d75a5.png","size": "full","aspectMode": "cover","aspectRatio": "1:1","gravity": "center"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Help-Menu","weight": "bold","align": "center","wrap": True,"adjustMode": "shrink-to-fit","color": "#ffffff"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Media","color": "#ffffff"}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "50px","offsetStart": "20px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Profile","color": "#ffffff","wrap": True}],"offsetTop": "90px","position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "90px","offsetStart": "20px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Steal","size": "md","wrap": True,"color": "#ffffff"}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "50px","offsetStart": "80px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Sider","size": "md","color": "#ffffff","wrap": True}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "90px","offsetStart": "80px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Tagall","size": "md","color": "#ffffff","wrap": True}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "50px","offsetStart": "130px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Group","size": "md","color": "#ffffff","wrap": True}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "90px","offsetStart": "130px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Logout","size": "md","color": "#ffffff","wrap": True}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "50px","offsetStart": "190px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Restart","size": "md","color": "#ffffff","wrap": True}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "90px","offsetStart": "190px"}],"position": "absolute","offsetBottom": "0px","offsetStart": "0px","offsetEnd": "0px","paddingAll": "20px","offsetTop": "130px"}],"paddingAll": "0px"}}
-	data = {"type": "flex","altText": "Test","contents": {"type": "carousel","contents": [dataa]}}
-	sendTemplate(to,data)
 def sendMention(to, mid, firstmessage, lastmessage):
 	try:
 		arrData = ""
@@ -230,9 +226,11 @@ By : NoiBots
  Media Commands :
      Music [ Query ]
      KBBI [ Query ]
+      Cuaca [ City ]
      Corona
      Hentai
      Gempa
+      Tribun news
 Note : Without Brackets!
 """
 profiles = """Hello @!
@@ -288,7 +286,9 @@ async def ibal_devi(op):
 					elif ibal == "speed":
 						devi.sendReplyMessage(msg.id, to, speed_fetch())
 					elif ibal == "help":
-						helpmenu(to)
+						dataa = {"type": "bubble","size": "kilo","body": {"type": "box","layout": "vertical","contents": [{"type": "image","url": "https://i.ibb.co/5jCXDdd/a354e7ed2dba2cfe122e8e7af06d75a5.png","size": "full","aspectMode": "cover","aspectRatio": "1:1","gravity": "center"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Help-Menu","weight": "bold","align": "center","wrap": True,"adjustMode": "shrink-to-fit","color": "#ffffff"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Media","color": "#ffffff"}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "50px","offsetStart": "20px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Profile","color": "#ffffff","wrap": True}],"offsetTop": "90px","position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "90px","offsetStart": "20px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Steal","size": "md","wrap": True,"color": "#ffffff"}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "50px","offsetStart": "80px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Sider","size": "md","color": "#ffffff","wrap": True}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "90px","offsetStart": "80px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Tagall","size": "md","color": "#ffffff","wrap": True}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "50px","offsetStart": "130px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Group","size": "md","color": "#ffffff","wrap": True}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "90px","offsetStart": "130px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Logout","size": "md","color": "#ffffff","wrap": True}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "50px","offsetStart": "190px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Restart","size": "md","color": "#ffffff","wrap": True}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "90px","offsetStart": "190px"}],"position": "absolute","offsetBottom": "0px","offsetStart": "0px","offsetEnd": "0px","paddingAll": "20px","offsetTop": "130px"}],"paddingAll": "0px"}}
+						data = {"type": "flex","altText": "Ibal Was Here~","contents": {"type": "carousel","contents": [dataa]}}
+						sendTemplate(to,data)
 					elif ibal == "media":
 						devi.sendMention(to, medias,"",[sender])
 					elif ibal == "profile":
@@ -341,7 +341,7 @@ async def ibal_devi(op):
 					elif ibal == "sider":
 						devi.sendReplyMessage(msg.id,to,"If You Want To Activated Check Sider, Type\nSider On\nIf You Want To Deactivated Check Sider, Type\nSider Off")
 					elif ibal == "liff":
-						devi.sendReplyMessage(msg.id,to,"Please Click Link Below For Access Template ♪\nline://app/1571191887-d6rJnOxJ/?type=text&text=Help")
+						devi.sendReplyMessage(msg.id,to,"Please Click Link Below For Access Template ♪\nline://app/1571191887-d6rJnOxJ/?type=text&text=NoiTeam♪")
 					elif ibal == 'sider on':
 						try:
 							devi.sendReplyMessage(msg.id,to, "Check Sider Set To Enable")
@@ -450,6 +450,31 @@ async def ibal_devi(op):
 							devi.sendReplyMessage(msg.id, to, str(ret))
 						except Exception as e:
 							devi.sendReplyMessage(msg.id, to, str(e))
+					elif ibal.startswith("cuaca "):
+						try:
+							sep = ibal.split(" ")
+							daerah = ibal.replace(sep[0] + " ","")
+							r = requests.get(f"http://dolphinapi.herokuapp.com/api/weather?city={daerah}")
+							d = json.loads(r.text)
+							ret = f"Prakiraan Cuaca Kota : {daerah}\n"
+							ret += "\n Desc : "+str(d["result"]["desc"])
+							ret += "\n Humidity : "+str(d["result"]["humidity"])
+							ret += "\n Temprature : "+str(d["result"]["temprature"])
+							ret += "\n Weather : "+str(d["result"]["weather"])
+							devi.sendReplyMessage(msg.id, to, str(ret))
+						except Exception as e:
+							devi.sendReplyMessage(msg.id, to, str(e))
+					elif ibal == "tribun news":
+						r = requests.get("https://ibalapi.herokuapp.com/api/tribunnews")
+						data = json.loads(r.text)
+						ret = "TribunNews\n"
+						ret += "\n• Title : "+str(data["result"][0]["title"])
+						ret += "\n• Url : "+str(data["result"][0]["url"])
+						ret += "\n• Title : "+str(data["result"][1]["title"])
+						ret += "\n• Url : "+str(data["result"][1]["url"])
+						ret += "\n• Title : "+str(data["result"][2]["title"])
+						ret += "\n• Url : "+str(data["result"][2]["url"])
+						devi.sendReplyMessage(msg.id, to, str(ret))
 #=================================================
 #Steal
 					elif ibal.startswith("getpicture "):
