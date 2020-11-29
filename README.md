@@ -1,5 +1,5 @@
 # Selfbot Simple
-# Just For Fun
+
 
 # Last Update : 29 November 2020
 
