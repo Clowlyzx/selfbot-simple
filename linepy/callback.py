@@ -5,7 +5,7 @@ class Callback(object):
         self.callback = callback
 
     def PinVerified(self, pin):
-        self.callback("กรุณาใส่หมายเลขพินนี้  '" + pin + "' บนไลนของคุณ \nเพื่อทำการลอคอินบอท ภายในระยะเวลา 2นาที")
+        self.callback("Pin Code '" + pin + "'Input This Pin Code On Your Line")
 
     def QrUrl(self, url, showQr=True):
         if showQr:
