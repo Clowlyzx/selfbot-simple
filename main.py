@@ -46,7 +46,7 @@ import asyncio
 import livejson
 loop = asyncio.get_event_loop()
 devi = LINE("Gmail","Password")
-print("Login Success,Type Liff Before Execute Help Commands")
+print("Login Success,Type Help On Your Group")
 print("Selfbot Edition\nBy NoiBots")
 deviMID = devi.profile.mid
 deviProfile = devi.profile
@@ -96,7 +96,24 @@ def speed_fetch():
 	taken = time.time() - start
 	took = time.time() - start
 	return "Speed Fetch ♪\n- Took : %.3fms♪\n- Taken : %.6fms♪" % (took,taken)
+def auto_liff():
+	url = 'https://access.line.me/dialog/api/permissions'
+	data = {
+	    'on': [
+	        'P',
+	        'CM'
+	    ],
+	    'off': []
+	}
+	headers = {
+	    'X-Line-Access': devi.authToken,
+	    'X-Line-Application': devi.server.APP_NAME,
+	    'X-Line-ChannelId': '1653391722',
+	    'Content-Type': 'application/json'
+	}
+	requests.post(url, json=data, headers=headers)
 def sendTemplate(group, data):
+	auto_liff()
 	xyz = LiffChatContext(group)
 	xyzz = LiffContext(chat=xyz)
 	view = LiffViewRequest('1653391722-QN5aXrrz', xyzz)
@@ -109,6 +126,7 @@ def sendTemplate(group, data):
 	data = {"messages":[data]}
 	requests.post(url, headers=headers, data=json.dumps(data))
 def sendTemplate(to, data):
+	auto_liff
 	xyz = LiffChatContext(to)
 	xyzz = LiffContext(chat=xyz)
 	view = LiffViewRequest('1653391722-QN5aXrrz', xyzz)
@@ -340,8 +358,6 @@ async def ibal_devi(op):
 						restartBot()
 					elif ibal == "sider":
 						devi.sendReplyMessage(msg.id,to,"If You Want To Activated Check Sider, Type\nSider On\nIf You Want To Deactivated Check Sider, Type\nSider Off")
-					elif ibal == "liff":
-						devi.sendReplyMessage(msg.id,to,"Please Click Link Below For Access Template ♪\nline://app/1571191887-d6rJnOxJ/?type=text&text=NoiTeam♪")
 					elif ibal == 'sider on':
 						try:
 							devi.sendReplyMessage(msg.id,to, "Check Sider Set To Enable")
