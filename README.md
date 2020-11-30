@@ -1,9 +1,9 @@
 # Selfbot Simple
 
 
-# Last Update : 29 November 2020
+# Last Update : 30 November 2020
 
-• What a new? 
+  •  What a new? 
   Added Template On Script
 
 # How To Run?
