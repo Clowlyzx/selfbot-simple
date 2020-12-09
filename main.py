@@ -45,8 +45,7 @@ import atexit
 import asyncio
 import livejson
 loop = asyncio.get_event_loop()
-devi = LINE("Gmail","Password")
-print("Login Success,Type Help On Your Group")
+devi = LINE("Gmail","Password") #Input Your Mail and Password Line
 print("Selfbot Edition\nBy NoiBots")
 deviMID = devi.profile.mid
 deviProfile = devi.profile
@@ -96,48 +95,6 @@ def speed_fetch():
 	taken = time.time() - start
 	took = time.time() - start
 	return "Speed Fetch ♪\n- Took : %.3fms♪\n- Taken : %.6fms♪" % (took,taken)
-def auto_liff():
-	url = 'https://access.line.me/dialog/api/permissions'
-	data = {
-	    'on': [
-	        'P',
-	        'CM'
-	    ],
-	    'off': []
-	}
-	headers = {
-	    'X-Line-Access': devi.authToken,
-	    'X-Line-Application': devi.server.APP_NAME,
-	    'X-Line-ChannelId': '1653391722',
-	    'Content-Type': 'application/json'
-	}
-	requests.post(url, json=data, headers=headers)
-def sendTemplate(group, data):
-	auto_liff()
-	xyz = LiffChatContext(group)
-	xyzz = LiffContext(chat=xyz)
-	view = LiffViewRequest('1653391722-QN5aXrrz', xyzz)
-	token = devi.liff.issueLiffView(view)
-	url = 'https://api.line.me/message/v3/share'
-	headers = {
-	    'Content-Type': 'application/json',
-	    'Authorization': 'Bearer %s' % token.accessToken
-	}
-	data = {"messages":[data]}
-	requests.post(url, headers=headers, data=json.dumps(data))
-def sendTemplate(to, data):
-	auto_liff
-	xyz = LiffChatContext(to)
-	xyzz = LiffContext(chat=xyz)
-	view = LiffViewRequest('1653391722-QN5aXrrz', xyzz)
-	token = devi.liff.issueLiffView(view)
-	url = 'https://api.line.me/message/v3/share'
-	headers = {
-	    'Content-Type': 'application/json',
-	    'Authorization': 'Bearer %s' % token.accessToken
-	}
-	data = {"messages":[data]}
-	requests.post(url, headers=headers, data=json.dumps(data))
 def sendMention(to, mid, firstmessage, lastmessage):
 	try:
 		arrData = ""
@@ -237,6 +194,20 @@ def changeVideoAndPictureProfile(pict, vids):
 	except Exception as e:
 		raise Exception("Error change video and picture profile {}".format(str(e)))
 		os.remove("ExcellentTeamBots.mp4")
+menu = """Hello @!
+Selfbot Edition!
+By : NoiBots
+      
+ Menu Commands :
+     Media
+     Steal
+       Profile
+     Group
+     Sider On/Off
+     Tagall/Mentionall
+       Logout
+Note : Without Brackets!
+"""
 medias = """Hello @!
 Selfbot Edition!
 By : NoiBots
@@ -304,9 +275,7 @@ async def ibal_devi(op):
 					elif ibal == "speed":
 						devi.sendReplyMessage(msg.id, to, speed_fetch())
 					elif ibal == "help":
-						dataa = {"type": "bubble","size": "kilo","body": {"type": "box","layout": "vertical","contents": [{"type": "image","url": "https://i.ibb.co/5jCXDdd/a354e7ed2dba2cfe122e8e7af06d75a5.png","size": "full","aspectMode": "cover","aspectRatio": "1:1","gravity": "center"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Help-Menu","weight": "bold","align": "center","wrap": True,"adjustMode": "shrink-to-fit","color": "#ffffff"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Media","color": "#ffffff"}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "50px","offsetStart": "20px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Profile","color": "#ffffff","wrap": True}],"offsetTop": "90px","position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "90px","offsetStart": "20px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Steal","size": "md","wrap": True,"color": "#ffffff"}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "50px","offsetStart": "80px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Sider","size": "md","color": "#ffffff","wrap": True}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "90px","offsetStart": "80px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Tagall","size": "md","color": "#ffffff","wrap": True}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "50px","offsetStart": "130px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Group","size": "md","color": "#ffffff","wrap": True}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "90px","offsetStart": "130px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Logout","size": "md","color": "#ffffff","wrap": True}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "50px","offsetStart": "190px"},{"type": "box","layout": "vertical","contents": [{"type": "text","text": "Restart","size": "md","color": "#ffffff","wrap": True}],"position": "absolute","borderWidth": "light","borderColor": "#ffffff","cornerRadius": "sm","offsetTop": "90px","offsetStart": "190px"}],"position": "absolute","offsetBottom": "0px","offsetStart": "0px","offsetEnd": "0px","paddingAll": "20px","offsetTop": "130px"}],"paddingAll": "0px"}}
-						data = {"type": "flex","altText": "Ibal Was Here~","contents": {"type": "carousel","contents": [dataa]}}
-						sendTemplate(to,data)
+						devi.sendMention(to, menu,"",[sender])
 					elif ibal == "media":
 						devi.sendMention(to, medias,"",[sender])
 					elif ibal == "profile":
