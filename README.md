@@ -1,36 +1,80 @@
-# Selfbot Simple
+# Selfbot Line Python
+## Basic From HelloWorld/Hellomod
+### Jika sudah di run, ketik "help" untuk melihat semua keycommandnya
+## Installation for Termux
+///////////////////////////////////////////////////////
+<br> pkg install python3 -y
+<br> apt-get install python --upgrade
+<br> pkg install git -y
+<br> pkg install nano -y
+<br> pip3 install rsa
+<br> pip3 install thrift==0.11.0
+<br> pip3 install requests
+<br> pip3 install bs4
+<br> pip3 install gtts
+<br> pip3 install beautifulsoup
+<br> pip3 install humanfriendly
+<br> pip3 install goslate
+<br> pip3 install wikipedia
+<br> pip3 install youtube_dl
+<br> pip3 install tweepy
+<br> pip3 install pytz
+<br> pip3 install html5lib
+<br> pip3 install pafy
+<br> pip3 install timeago
+<br> pip3 install livejson
+<br> pip3 install humanize
+<br>git clone https://github.com/imbobb/HelloBobby
+<br>ls
+<br>cd HelloBobby
+<br>ls
+<br>nano sb.py 
+<br>(input Email & Pass)
+<br>ctrl+x
+<br>y -> enter
+<br>python3 sb.py
+## Installation for VPS
+///////////////////////////////////////////////////////
+<br> sudo apt-get update
+<br> sudo apt-get install git
+<br> sudo apt-get install python3-pip
+<br> sudo pip3 install rsa
+<br> sudo pip3 install thrift==0.11.0
+<br> sudo pip3 install requests
+<br> sudo pip3 install bs4
+<br> sudo pip3 install gtts
+<br> sudo pip3 install beautifulsoup
+<br> sudo pip3 install humanfriendly
+<br> sudo pip3 install goslate
+<br> sudo pip3 install wikipedia
+<br> sudo pip3 install youtube_dl
+<br> sudo pip3 install tweepy
+<br> sudo pip3 install pytz
+<br> sudo pip3 install timeago
+<br> sudo pip3 install html5lib
+<br> sudo pip3 install pafy
+<br> sudo pip3 install livejson
+<br> sudo pip3 install humanize
+<br>git clone https://github.com/imbobb/HelloBobby
+<br>ls
+<br>cd HelloBobby
+<br>ls
+<br>nano sb.py
+<br>(input Email & Pass)
+<br>ctrl+x
+<br>y -> enter
+<br>python3 sb.py
 
+# NOTE
+<br>BUAT YG MAU UBAH SILAHKAN UP SUKA SUKA
 
-# Last Update : 30 November 2020
+# SPECIAL THANKS TO
+<br>• Arifistifik / <a href="https://github.com/arifistifik">@arifistifik</a>
+<br>• Team Newbie Corps™
 
-  •  What a new? 
-  Added Template On Script
+# SUPPORTED BY
+<br>• <a href="https://lin.ee/hzZujuI">We Bare Bears Corps™</a>
+<br>• <a href="https://lin.ee/emt8het">B-G-N Squad</a>
 
-# How To Run?
-# Run Via Termux
-termux-setup-storage
-apt update
-pkg install python
-apt install python-pip
-pkg install git
-pip3 install rsa
-pip3 install bs4
-pip3 install youtube_dl
-pip3 install pafy
-pip3 insall googletrans
-pip3 install gtts
-pip3 install humanize
-pip3 install humanfriendly
-pip3 install pytz
-pip3 install null
-pip3 install requests
-pip3 install livejson
-pip3 install html5lib
-pip3 install tweepy
-pip3 install wikipedia
-pip3 install thrift
-cd storage
-cd downloads
-cd selfbot-simple-main
-cd selfbot-simple-main
-python3 main.py
+# ADD MY LINE
+<br> <a href="https://line.me/ti/p/~imbobby_">`B O B B Y™</a>
